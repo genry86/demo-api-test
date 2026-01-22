@@ -59,3 +59,15 @@ Thumbs.db
 
 CLAUDE.md
 .claude/*
+
+# Node.js / NestJS
+node_modules/
+Nest/node_modules/
+Nest/dist/
+Nest/src/schema.gql
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn
