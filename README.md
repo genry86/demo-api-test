@@ -8,13 +8,22 @@ Designed for showcasing backend architecture, clean code structure, and integrat
 
 ## 🚀 Features
 
+### Python Stack
 - ⚡ FastAPI-based REST endpoints (`api_service.py`)
 - 🔄 GraphQL API with Strawberry GraphQL (`graphql_service.py`)
 - 🤖 Lightweight MCP server for AI/ML integration (`mcp_service.py`)
-- 🗄 PostgreSQL database schema with users, posts, tags, post-tag relations
 - 🧱 SQLAlchemy 2.0 ORM models
 - 🔐 Pydantic models for data validation
 - 🧪 Minimal test runner (`testing.py`)
+
+### Node.js Stack
+- 🟢 NestJS REST API with Swagger documentation (`Nest/`)
+- 🔄 GraphQL API with Apollo Server
+- 🧱 TypeORM entities
+- 🔐 class-validator DTOs
+
+### Shared
+- 🗄 PostgreSQL database schema with users, posts, tags, post-tag relations
 
 ---
 
@@ -40,8 +49,16 @@ Designed for showcasing backend architecture, clean code structure, and integrat
 
 ## 📁 Project Structure
 
-```
+```text
 demo-api-test/
+├── Nest/                    # NestJS implementation
+│   ├── src/
+│   │   ├── config/          # Database configuration
+│   │   ├── entities/        # TypeORM entities
+│   │   ├── modules/         # Feature modules (users, posts, tags, graphql)
+│   │   ├── app.module.ts    # Root module
+│   │   └── main.ts          # Entry point
+│   └── package.json
 ├── Tools/
 │   ├── __init__.py          # Declares as package
 │   ├── config.py            # Constants & DB config
@@ -70,31 +87,19 @@ cd demo-api-test
 
 ### 2. Install and start PostgreSQL
 
-**Critical Step:** PostgreSQL must be installed and running before proceeding.
+PostgreSQL must be installed and running before proceeding. Install it using your system's package manager (e.g., `brew install postgresql` on macOS, `apt install postgresql` on Ubuntu).
+
+### 3. Set up the database
+
+- Create a database named `DemoApiTest` (or update `.env` with your database name)
+- Run the schema and sample data scripts:
 
 ```bash
-# Install PostgreSQL (macOS with Homebrew)
-brew install postgresql
-
-# Start PostgreSQL service
-brew services start postgresql
-
-# Create database (if needed)
-createdb DemoApiTest
+psql -U postgres -d DemoApiTest -f SQL/schema.sql
+psql -U postgres -d DemoApiTest -f SQL/dummy_data.sql
 ```
 
-For other operating systems, install PostgreSQL using your package manager.
-
-### 3. Set up the database schema
-
-Use `SQL/schema.sql` to create the schema, then load test data from `SQL/dummy_data.sql`:
-
-```bash
-psql -U your_user -d your_db -f SQL/schema.sql
-psql -U your_user -d your_db -f SQL/dummy_data.sql
-```
-
-Make sure your database credentials match those in `Tools/config.py`.
+- Update `.env` file with your database credentials if different from defaults
 
 ### 4. Install dependencies
 
@@ -105,6 +110,8 @@ pip install -r requirements.txt
 (*Note: Create `requirements.txt` if missing using `pip freeze > requirements.txt`*)
 
 ### 5. Run the services
+
+#### Python Services
 
 ```bash
 # Run REST API service (port 8000)
@@ -117,15 +124,36 @@ python graphql_service.py
 python mcp_service.py
 ```
 
+#### NestJS Service
+
+```bash
+cd Nest
+
+# Install dependencies
+npm install
+
+# Run in development mode (port 8000)
+npm run start:dev
+
+# Or build and run production
+npm run build
+npm run start
+```
+
 ---
 
 ## 🎯 API Overview
 
 Once running, access:
 
-- **REST API Docs**: [http://localhost:8000/docs](http://localhost:8000/docs)
-- **GraphQL Playground**: [http://localhost:8001/graphql](http://localhost:8001/graphql)
-- **MCP API Docs**: [http://localhost:9000/docs](http://localhost:9000/docs)
+**Python Services:**
+- REST API Docs: [http://localhost:8000/docs](http://localhost:8000/docs)
+- GraphQL Playground: [http://localhost:8001/graphql](http://localhost:8001/graphql)
+- MCP API Docs: [http://localhost:9000/docs](http://localhost:9000/docs)
+
+**NestJS Service:**
+- Swagger Docs: [http://localhost:8000/docs](http://localhost:8000/docs)
+- GraphQL Playground: [http://localhost:8000/graphql](http://localhost:8000/graphql)
 
 ### GraphQL API Features
 
