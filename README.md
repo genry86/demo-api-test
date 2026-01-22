@@ -1,6 +1,6 @@
-# 🧪 Demo API Service (FastAPI + GraphQL + MCP)
+# 🧪 Demo API Service (FastAPI/NestJS + GraphQL + MCP)
 
-A demonstration project showcasing a modular REST API built with **FastAPI**, featuring an auxiliary **MCP server** for AI integrations and a relational **PostgreSQL** database schema.
+A demonstration project showcasing a modular REST API built with **FastAPI** and **NestJS**, featuring an auxiliary **MCP server** for AI integrations and a relational **PostgreSQL** database schema.
 
 Designed for showcasing backend architecture, clean code structure, and integration between classic APIs and AI-oriented microservices.
 
